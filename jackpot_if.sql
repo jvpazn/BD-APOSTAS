@@ -1,4 +1,4 @@
-CREATE SCHEMA IF NOT EXISTS jackpot_if;
+CREATE SCHEMA jackpot_if;
 USE jackpot_if;
 
 CREATE TABLE usuario (
