@@ -412,4 +412,11 @@ INSERT INTO usuario_grupo (usuario_id, grupo_id) VALUES (29, 10);
 INSERT INTO usuario_grupo (usuario_id, grupo_id) VALUES (30, 10);
 INSERT INTO usuario_grupo (usuario_id, grupo_id) VALUES (31, 10);
 
+-- CONSULTAS PROPOSTAS (3 ENTREGA) [SCRIPT SQL AINDA A SER ADICIONADO]
 
+-- 1. Selecione o nome, saldo das três pessoas que não possuam a Vogal "A" mas que possuam a vogal "E" no nome e que possuem o maior saldo atual com o nome da tabela de retorno sendo "MAIORES APOSTADORES" e "RIQUEZA" (NOT, AND, LIKE, NOT LIKE, ORDER BY, LIMIT, ALIAS)
+-- 2. Selecione o grupo comunidade onde a soma do saldo de todos os participantes seja maior que o resto. (SUM, GROUP BY, HAVING, Subselect, MAX, = (Igual), INNER JOIN)
+-- 3. Selecione todas as comunidades que possuam pelo menos um participante cujo id seja diferente de 3 e retorne apenas aquelas em que o id do responsável é menor que 10 ou maior que 20.
+-- 4. Selecione o id da sessão de todos os log depositos que o id da sessão NÃO esteja entre 10 e 20 e que o valor depositado distinto seja maior ou igual que a média de todos os valores depositados (AVG, NOT BETWEEN, >= (maior ou igual), DISTINCT)
+-- 5. Selecione os 5 ids de log depositos que estão entre 15 e 30 que não sejam 13, 15 e 16 que depositaram os menores valores se houver algum nulo, retorne ele tambem. (NOT IN, BETWEEN, IS NULL)
+-- 6. Selecione o nome dos usuários e retorne o número total de depósitos feitos por esses usuários e o menor valor de aposta que eles já fizeram filtre o resultado para mostrar apenas os usuários cujo saldo_atual é menor ou igual a R$ 50,00 e cujo id não é nulo. (MIN, COUNT, <= (menor que), IS NOT NULL, Subselect, GROUP BY)
