@@ -443,13 +443,11 @@ INSERT INTO usuario_grupo (usuario_id, grupo_id) VALUES (31, 10);
 -- CONSULTAS PROPOSTAS (3 ENTREGA) [SCRIPT SQL AINDA A SER ADICIONADO]
 
 -- 1. Selecione o nome, saldo das três pessoas que não possuam a Vogal "A" mas que possuam a vogal "E" no nome e que possuem o maior saldo atual com o nome da tabela de retorno sendo "MAIORES APOSTADORES" e "RIQUEZA" (NOT, AND, LIKE, NOT LIKE, ORDER BY, LIMIT, ALIAS)
-SELECT 
-FROM usuario
-WHERE NOT nome_usuario LIKE '%a%'
-  AND nome_usuario LIKE '%e%'
-ORDER BY saldo_atual DESC
-LIMIT 3;
+Select nome_usuario AS "MAIORES APOSTADORES", saldo_atual AS "RIQUEZA" from usuario where nome_usuario NOT Like '%a%' and nome_usuario Like '%e%' order by saldo_atual desc limit 3;
+
 -- 2. Selecione o grupo comunidade onde a soma do saldo de todos os participantes seja maior que o resto. (SUM, GROUP BY, HAVING, Subselect, MAX, = (Igual), INNER JOIN)
+SELECT grupo_comunidade.nome AS "COMUNIDADE", SUM(usuario.saldo_atual) AS "SALDO TOTAL" FROM usuario INNER JOIN usuario_grupo ON usuario.id = usuario_grupo.usuario_id INNER JOIN grupo_comunidade ON usuario_grupo.grupo_id = grupo_comunidade.id GROUP BY grupo_comunidade.nome HAVING SUM(usuario.saldo_atual) = (SELECT MAX(soma_saldo) FROM (SELECT SUM(usuario.saldo_atual) AS soma_saldo FROM usuario INNER JOIN usuario_grupo ON usuario.id = usuario_grupo.usuario_id GROUP BY usuario_grupo.grupo_id) sub);
+
 -- 3. Selecione todas as comunidades que possuam pelo menos um participante cujo id seja diferente de 3 e retorne apenas aquelas em que o id do responsável é menor que 10 ou maior que 20. (<> (Diferente), OR, < (menor que), >(Maior que), Subselect, IN)
 SELECT *
 FROM grupo_comunidade
@@ -463,6 +461,8 @@ AND (
     OR responsavel_id > 20
 );
 -- 4. Selecione o id da sessão de todos os log depositos que o id da sessão NÃO esteja entre 10 e 20 e que o valor depositado distinto seja maior ou igual que a média de todos os valores depositados (AVG, NOT BETWEEN, >= (maior ou igual), DISTINCT)
+Select id_sessao from log_depositos where id_sessao NOT between 10 AND 20 And valor_adicionado >= (select AVG(DISTINCT valor_adicionado) from log_depositos);
+
 -- 5. Selecione os 5 ids de log depositos que estão entre 15 e 30 que não sejam 13, 15 e 16 que depositaram os menores valores se houver algum nulo, retorne ele tambem. (NOT IN, BETWEEN, IS NULL)
 SELECT id_deposito
 FROM log_depositos
